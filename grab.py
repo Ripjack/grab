@@ -38,5 +38,5 @@ while arch:
         en = flags['en']
     if 'time' in flags:
         time = flags['time']
-    if quality in flags:
+    if 'quality' in flags:
         thumb_perc = quality = flags['quality']
