@@ -22,7 +22,7 @@ while arch:
         'file': ""
     }
     if en == True:
-        subprocess.run(['scrot', '--thumb', thumb_perc, '-q', quality, '{}.jpg'.format(hostname)])
+        subprocess.run(['scrot', '--thumb', str(thumb_perc), '-q', str(quality), '{}.jpg'.format(hostname)])
         with open('{}.jpg'.format(hostname), 'rb') as f:
             img = f.read()
             img = base64.b64encode(img).decode()
