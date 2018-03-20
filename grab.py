@@ -16,7 +16,7 @@ thumb_perc = 50
 quality = 50
 headers = {'Content-type': 'application/json'}
 while arch:
-    subprocess.run(['sleep', time])
+    subprocess.run(['sleep', str(time)])
     _obj = {
         'hostname': hostname,
         'file': ""
