@@ -9,7 +9,7 @@ except FileNotFoundError:
 server_path = "/includes/screen_requrest.php"
 hostname = subprocess.check_output(['hostname', '-I'])
 hostname = hostname.decode()[:-2]
-server_ip = "http://pivot"
+server_ip = "pivot"
 en = False
 time = 5
 thumb_perc = 50
@@ -28,7 +28,7 @@ while arch:
             img = base64.b64encode(img).decode()
             _obj['file'] = json.dumps(img)
         subprocess.run(['rm', '{}.jpg'.format(hostname)])
-    conn = http.HTTPConnection(server_ip)
+    conn = http.HTTPConnection("{}:80".format(server_ip))
     conn.request("POST", server_path, _obj, headers)
     json_flags = conn.getresponse().read().decode()
     flags = json.loads(json_flags)
