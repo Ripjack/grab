@@ -49,4 +49,4 @@ while arch:
     except:
         pass
     finally:
-        conn.close(0)
+        conn.close()
