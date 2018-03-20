@@ -34,9 +34,9 @@ while arch:
     conn.request("POST", server_path, _obj, headers)
     json_flags = conn.getresponse().read().decode()
     flags = json.loads(json_flags)
-    if flags['en']:
+    if 'en' in flags:
         en = flags['en']
-    if flags['time']:
+    if 'time' in flags:
         time = flags['time']
-    if flags['quality']:
+    if quality in flags:
         thumb_perc = quality = flags['quality']
