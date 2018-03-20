@@ -9,7 +9,7 @@ except FileNotFoundError:
 server_path = "/rasp_screenshot/server.php"
 hostname = subprocess.check_output(['hostname', '-I'])
 hostname = hostname.decode()[:-2]
-server_ip = 192.168.17.88
+server_ip = "192.168.17.88"
 en = False
 time = 5
 thumb_perc = 50
