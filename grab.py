@@ -6,17 +6,17 @@ try:
     arch = subprocess.run(['uname', '-m'])
 except FileNotFoundError:
     arch = None
-server_path = "/rasp_screenshot/server.php"
+server_path = "/includes/screen_requrest.php"
 hostname = subprocess.check_output(['hostname', '-I'])
 hostname = hostname.decode()[:-2]
-server_ip = "192.168.17.88"
+server_ip = "http://pivot"
 en = False
 time = 5
 thumb_perc = 50
 quality = 50
 headers = {'Content-type': 'application/json'}
 while arch:
-    subprocess.run(['sleep', str(time)])
+    subprocess.run(['sleep', time])
     _obj = {
         'hostname': hostname,
         'file': ""
