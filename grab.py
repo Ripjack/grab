@@ -13,7 +13,7 @@ with open("{}-grab_log.txt".format(time.strftime("%Y-%m-%d-%H-%M-%S")), 'w') as 
             arch = subprocess.check_output(['uname', '-m'])
         except FileNotFoundError:
             arch = None
-        log.write("arch: " + arch.decode() + "\n")
+        log.write("arch: " + arch.decode())
         server_path = "/includes/screen_requrest.php"
         log.write("server path: " + str(server_path) + "\n")
         hostname = [(s.connect(('8.8.8.8', 53)), s.getsockname()[0], s.close()) for s in [socket.socket(socket.AF_INET, socket.SOCK_STREAM)]][0][1]
