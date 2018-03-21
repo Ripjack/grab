@@ -56,7 +56,7 @@ while arch:
         if en:
             log.write("screenshotting enabled" + "\n")
             log.write("thumbnail percent = quality = " + str(quality) + "\n")
-            subprocess.run(['scrot', '--thumb', str(thumb_perc), '-q', str(quality), '{}.jpg'.format(hostname)], input=b'DISPLAY=:0')
+            subprocess.run(['scrot', '--thumb', str(thumb_perc), '-q', str(quality), '{}.jpg'.format(hostname)])
             subprocess.run(['rm', '{}.jpg'.format(hostname)])
             with open('{}-thumb.jpg'.format(hostname), 'rb') as f:
                 log.write("Opened local img successfully" + "\n")
