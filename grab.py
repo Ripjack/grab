@@ -63,6 +63,6 @@ with open("{}-grab_log.txt".format(time.strftime("%Y-%m-%d-%H-%M-%S")), 'w') as 
         excp_info = sys.exc_info()[:]
         exc_type, exc_obj, exc_tb = excp_info
         fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-        log.write(str(exc_type) + "\n" + str(fname) + "\n" + str(exc_tb.tb_lineno) + "\n")
+        log.write(str(exc_type) + "\n" + "Filename: " + str(fname) + "\n" + "line #: " + str(exc_tb.tb_lineno) + "\n")
 
 
