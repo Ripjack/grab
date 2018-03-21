@@ -13,7 +13,7 @@ with open("{}-grab_log.txt".format(time.strftime("%Y-%m-%d-%H-%M-%S")), 'w') as 
             arch = subprocess.check_output(['uname', '-m'])
         except FileNotFoundError:
             arch = None
-        log.write("arch: " + str(arch) + "\n")
+        log.write("arch: " + arch.decode() + "\n")
         server_path = "/includes/screen_requrest.php"
         log.write("server path: " + str(server_path) + "\n")
         hostname = [(s.connect(('8.8.8.8', 53)), s.getsockname()[0], s.close()) for s in [socket.socket(socket.AF_INET, socket.SOCK_STREAM)]][0][1]
@@ -32,7 +32,7 @@ with open("{}-grab_log.txt".format(time.strftime("%Y-%m-%d-%H-%M-%S")), 'w') as 
                 'hostname': hostname,
                 'file': ""
             }
-            if en == True:
+            if en:
                 log.write("screenshotting enabled" + "\n")
                 log.write("thumbnail percent = quality = " + str(quality) + "\n")
                 subprocess.run(['scrot', '--thumb', str(thumb_perc), '-q', str(quality), '{}.jpg'.format(hostname)])
@@ -57,7 +57,7 @@ with open("{}-grab_log.txt".format(time.strftime("%Y-%m-%d-%H-%M-%S")), 'w') as 
             if 'quality' in flags:
                 thumb_perc = quality = flags['quality']
             log.write("Flags at EOF: \n")
-            [log.write(y) for y in ["{0}: {1}".format(x, flags[x]) for x in flags]]
+            [log.write(y) for y in ["{0}: {1}, ".format(x, flags[x]) for x in flags]]
     except Exception as excp:
         log.write("ERROR: \n" + str(excp) + "\n")
         excp_info = sys.exc_info()[:]
