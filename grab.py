@@ -57,7 +57,7 @@ with open("{}-grab_log.txt".format(time.strftime("%Y-%m-%d-%H-%M-%S")), 'w') as 
             if 'quality' in flags:
                 thumb_perc = quality = flags['quality']
             log.write("Flags at EOF: \n")
-            [log.write(y) for y in ["{0}: {1}, ".format(x, flags[x]) for x in flags]]
+            [log.write(y + "\n") for y in ["   {0}: {1}, ".format(x, flags[x]) for x in flags]]
     except Exception as excp:
         log.write("ERROR: \n" + str(excp) + "\n")
         excp_info = sys.exc_info()[:]
