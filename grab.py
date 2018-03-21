@@ -15,28 +15,28 @@ while True:
     except OSError:
         subprocess.run(['sleep', '10'])
         pass
-    log.write("Beginning @ " + time.strftime("%Y-%m-%d-%H-%M-%S") + "\n")
-    begin = time.time()
+log.write("Beginning @ " + time.strftime("%Y-%m-%d-%H-%M-%S") + "\n")
+begin = time.time()
+try:
+    arch = subprocess.check_output(['uname', '-m'])
+except FileNotFoundError:
+    arch = None
+log.write("arch: " + arch.decode())
+server_path = "/includes/screen_requrest.php"
+log.write("server path: " + str(server_path) + "\n")
+while True:
     try:
-        arch = subprocess.check_output(['uname', '-m'])
-    except FileNotFoundError:
-        arch = None
-    log.write("arch: " + arch.decode())
-    server_path = "/includes/screen_requrest.php"
-    log.write("server path: " + str(server_path) + "\n")
-    while True:
-        try:
-            hostname = [(s.connect(('8.8.8.8', 53)), s.getsockname()[0], s.close()) for s in [socket.socket(socket.AF_INET, socket.SOCK_STREAM)]][0][1]
-            break
-        except OSError:
-            pass
-    log.write("hostname: " + str(hostname) + "\n")
-    server_ip = "pivot"
-    en = False
-    _time = 5
-    thumb_perc = 50
-    quality = 50
-    headers = {'Content-type': 'application/json'}
+        hostname = [(s.connect(('8.8.8.8', 53)), s.getsockname()[0], s.close()) for s in [socket.socket(socket.AF_INET, socket.SOCK_STREAM)]][0][1]
+        break
+    except OSError:
+        pass
+log.write("hostname: " + str(hostname) + "\n")
+server_ip = "pivot"
+en = False
+_time = 5
+thumb_perc = 50
+quality = 50
+headers = {'Content-type': 'application/json'}
 
 while arch:
     try:
