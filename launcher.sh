@@ -3,6 +3,6 @@
 #exec grab with python3
 
 cd /home/pi/grab/
-export DISPLAY=:0
+export DISPLAY=:0.0
 export XAUTHORITY=~/.Xauthority
-XAUTHORITY=~/.Xauthority DISPLAY=:0 sudo /usr/bin/python3 /home/pi/grab/grab.py
+XAUTHORITY=~/.Xauthority DISPLAY=:0.0 sudo /usr/bin/python3 /home/pi/grab/grab.py
