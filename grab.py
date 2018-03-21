@@ -14,7 +14,8 @@ while True:
         break
     except OSError:
         pass
-try:
+
+
     log.write("Beginning @ " + time.strftime("%Y-%m-%d-%H-%M-%S") + "\n")
     begin = time.time()
     try:
@@ -33,7 +34,8 @@ try:
     quality = 50
     headers = {'Content-type': 'application/json'}
 
-    while arch:
+while arch:
+    try:
         if time.time() - begin > 300:
             log.close()
             subprocess.run(['rm', '{}-grab_log.txt'.format(logtime)])
@@ -75,11 +77,9 @@ try:
         log.write("Flags at EOF: \n")
         [log.write(y + "\n") for y in ["   {0}: {1}, ".format(x, flags[x]) for x in flags]]
         log.flush()
-except Exception as excp:
-    log.write("ERROR: \n" + str(excp) + "\n")
-    excp_info = sys.exc_info()[:]
-    exc_type, exc_obj, exc_tb = excp_info
-    fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-    log.write(str(exc_type) + "\n" + "Filename: " + str(fname) + "\n" + "line #: " + str(exc_tb.tb_lineno) + "\n")
-
-
+    except Exception as excp:
+        log.write("ERROR: \n" + str(excp) + "\n")
+        excp_info = sys.exc_info()[:]
+        exc_type, exc_obj, exc_tb = excp_info
+        fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+        log.write(str(exc_type) + "\n" + "Filename: " + str(fname) + "\n" + "line #: " + str(exc_tb.tb_lineno) + "\n")
