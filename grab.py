@@ -15,7 +15,7 @@ while True:
     except OSError:
         subprocess.run(['sleep', '10'])
         pass
-log.write("Beginning @ " + time.strftime("%Y-%m-%d-%H-%M-%S") + "\n")
+log.write("Beginning @ " + time.strftime("%Y-%m-%d %H:%M:%S") + "\n")
 begin = time.time()
 try:
     arch = subprocess.check_output(['uname', '-m'])
@@ -41,7 +41,7 @@ while arch:
             log = open("{}-grab_log.txt".format(logtime), 'w')
             begin = time.time()
         subprocess.run(['sleep', str(_time)])
-        log.write("_new loop_" + "\n")
+        log.write(time.strftime("%Y-%m-%d %H:%M:%S"))
         log.write("en state: " + str(en) + "\n")
         _obj = {
             'hostname': hostname,
