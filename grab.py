@@ -8,13 +8,6 @@ import sys
 import os
 logtime = time.strftime("%Y-%m-%d-%H-%M-%S")
 log = open("{}-grab_log.txt".format(logtime), 'w')
-while True:
-    try:
-        [(s.connect(("8.8.8.8", 53)), s.close()) for s in [socket.socket(socket.AF_INET, socket.SOCK_STREAM)]]
-        break
-    except OSError:
-        subprocess.run(['sleep', '10'])
-        pass
 log.write("Beginning @ " + time.strftime("%Y-%m-%d %H:%M:%S") + "\n")
 begin = time.time()
 try:
@@ -23,7 +16,7 @@ except FileNotFoundError:
     arch = None
 log.write("arch: " + arch.decode())
 server_path = "/includes/screen_requrest.php"
-log.write("server path: " + str(server_path) + "\n")
+log.write("server path: " + str(server_path) + "\n\n")
 server_ip = "pivot"
 en = False
 _time = 5
@@ -41,7 +34,7 @@ while arch:
             log = open("{}-grab_log.txt".format(logtime), 'w')
             begin = time.time()
         subprocess.run(['sleep', str(_time)])
-        log.write(time.strftime("%Y-%m-%d %H:%M:%S"))
+        log.write(time.strftime("%Y-%m-%d %H:%M:%S") + "\n")
         log.write("en state: " + str(en) + "\n")
         _obj = {
             'hostname': hostname,
