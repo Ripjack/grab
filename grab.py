@@ -13,9 +13,8 @@ while True:
         [(s.connect(("8.8.8.8", 53)), s.close()) for s in [socket.socket(socket.AF_INET, socket.SOCK_STREAM)]]
         break
     except OSError:
+        subprocess.run(['sleep', '5'])
         pass
-
-
     log.write("Beginning @ " + time.strftime("%Y-%m-%d-%H-%M-%S") + "\n")
     begin = time.time()
     try:
