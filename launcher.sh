@@ -4,4 +4,5 @@
 
 cd /home/pi/grab/
 export DISPLAY=:0
-sudo XAUTHORITY=~/.Xauthority /usr/bin/python3 /home/pi/grab/grab.py
+export XAUTHORITY=~/.Xauthority
+XAUTHORITY=~/.Xauthority DISPLAY=:0 sudo /usr/bin/python3 /home/pi/grab/grab.py
