@@ -8,6 +8,12 @@ import sys
 import os
 logtime = time.strftime("%Y-%m-%d-%H-%M-%S")
 log = open("{}-grab_log.txt".format(logtime), 'w')
+while True:
+    try:
+        [(s.connect(("8.8.8.8", 53)), s.close()) for s in [socket.socket(socket.AF_INET, socket.SOCK_STREAM)]]
+        return
+    except OSError:
+        pass
 try:
     log.write("Beginning @ " + time.strftime("%Y-%m-%d-%H-%M-%S") + "\n")
     begin = time.time()
