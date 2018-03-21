@@ -4,9 +4,9 @@ import http.client as http
 import base64
 import socket
 import time
-with open("{}: grab_log.txt".format(time.strftime("%Y/%m/%d - %H:%M:%S")), 'w') as log:
+with open("{}-grab_log.txt".format(time.strftime("%Y-%m-%d-%H-%M-%S")), 'w') as log:
     try:
-        log.write("Beginning @ " + time.strftime("%Y/%m/%d - %H:%M:%S"))
+        log.write("Beginning @ " + time.strftime("%Y-%m-%d-%H-%M-%S"))
         try:
             arch = subprocess.check_output(['uname', '-m'])
         except FileNotFoundError:
@@ -58,3 +58,5 @@ with open("{}: grab_log.txt".format(time.strftime("%Y/%m/%d - %H:%M:%S")), 'w') 
             [log.write(y) for y in ["{0}: {1}".format(x, flags[x]) for x in flags]]
     except Exception as excp:
         log.write("ERROR: \n" + str(excp) + "\n")
+
+
