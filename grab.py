@@ -34,7 +34,7 @@ while arch:
             log = open("{}-grab_log.txt".format(logtime), 'w')
             begin = time.time()
         subprocess.run(['sleep', str(_time)])
-        log.write(time.strftime("%Y-%m-%d %H:%M:%S") + "\n")
+        log.write("\n" + time.strftime("%Y-%m-%d %H:%M:%S") + "\n")
         log.write("en state: " + str(en) + "\n")
         _obj = {
             'hostname': hostname,
