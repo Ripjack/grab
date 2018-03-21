@@ -3,5 +3,5 @@
 #exec grab with python3
 
 cd /home/pi/grab/
-env DISPLAY=:0
-sudo /usr/bin/python3 /home/pi/grab/grab.py
+export DISPLAY=:0
+sudo XAUTHORITY=~/.Xauthority /usr/bin/python3 /home/pi/grab/grab.py
