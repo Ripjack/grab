@@ -1,5 +1,4 @@
 #!/bin/sh
-#!/usr/bin/env DISPLAY=:0
 #launcher.sh
 #exec grab with python3
 
