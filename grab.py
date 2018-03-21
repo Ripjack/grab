@@ -6,9 +6,11 @@ import socket
 import time
 import sys
 import os
-log = open("{}-grab_log.txt".format(time.strftime("%Y-%m-%d-%H-%M-%S")), 'w')
+logtime = time.strftime("%Y-%m-%d-%H-%M-%S")
+log = open("{}-grab_log.txt".format(logtime), 'w')
 try:
     log.write("Beginning @ " + time.strftime("%Y-%m-%d-%H-%M-%S") + "\n")
+    begin = time.time()
     try:
         arch = subprocess.check_output(['uname', '-m'])
     except FileNotFoundError:
@@ -26,7 +28,13 @@ try:
     headers = {'Content-type': 'application/json'}
 
     while arch:
-        log.write("NEWLOOP" + "\n")
+        if time.time() - begin > 900:
+            log.close()
+            subprocess.run(['rm', '{}-grab_log.txt'.format(logtime)])
+            logtime = time.strftime("%Y-%m-%d-%H-%M-%S")
+            log = open("{}-grab_log.txt".format(logtime), 'w')
+            begin = time.time()
+        log.write("_new loop_" + "\n")
         log.write("en state: " + str(en) + "\n")
         subprocess.run(['sleep', str(time)])
         _obj = {
