@@ -46,7 +46,3 @@ while arch:
             time = flags['time']
         if 'quality' in flags:
             thumb_perc = quality = flags['quality']
-    except:
-        pass
-    finally:
-        conn.close()
