@@ -34,9 +34,9 @@ try:
             logtime = time.strftime("%Y-%m-%d-%H-%M-%S")
             log = open("{}-grab_log.txt".format(logtime), 'w')
             begin = time.time()
+        subprocess.run(['sleep', str(_time)])
         log.write("_new loop_" + "\n")
         log.write("en state: " + str(en) + "\n")
-        subprocess.run(['sleep', str(_time)])
         _obj = {
             'hostname': hostname,
             'file': ""
@@ -68,6 +68,7 @@ try:
             thumb_perc = quality = flags['quality']
         log.write("Flags at EOF: \n")
         [log.write(y + "\n") for y in ["   {0}: {1}, ".format(x, flags[x]) for x in flags]]
+        log.flush()
 except Exception as excp:
     log.write("ERROR: \n" + str(excp) + "\n")
     excp_info = sys.exc_info()[:]
