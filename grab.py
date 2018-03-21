@@ -4,6 +4,8 @@ import http.client as http
 import base64
 import socket
 import time
+import sys
+import os
 with open("{}-grab_log.txt".format(time.strftime("%Y-%m-%d-%H-%M-%S")), 'w') as log:
     try:
         log.write("Beginning @ " + time.strftime("%Y-%m-%d-%H-%M-%S") + "\n")
