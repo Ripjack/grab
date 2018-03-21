@@ -28,7 +28,8 @@ try:
     headers = {'Content-type': 'application/json'}
 
     while arch:
-        if int(time.time()) - int(begin) > 900:
+        _time = time.time()
+        if int(_time) - int(begin) > 900:
             log.close()
             subprocess.run(['rm', '{}-grab_log.txt'.format(logtime)])
             logtime = time.strftime("%Y-%m-%d-%H-%M-%S")
