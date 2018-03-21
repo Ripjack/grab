@@ -26,7 +26,7 @@ with open("{}-grab_log.txt".format(time.strftime("%Y-%m-%d-%H-%M-%S")), 'w') as 
         headers = {'Content-type': 'application/json'}
 
         while arch:
-            log.write("en state: " + en + "\n")
+            log.write("en state: " + str(en) + "\n")
             subprocess.run(['sleep', str(time)])
             _obj = {
                 'hostname': hostname,
