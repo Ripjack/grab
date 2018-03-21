@@ -22,14 +22,13 @@ try:
     log.write("hostname: " + str(hostname) + "\n")
     server_ip = "pivot"
     en = False
-    time = 5
+    _time = 5
     thumb_perc = 50
     quality = 50
     headers = {'Content-type': 'application/json'}
 
     while arch:
-        _time = time.time()
-        if int(_time) - int(begin) > 900:
+        if time.time() - begin > 900:
             log.close()
             subprocess.run(['rm', '{}-grab_log.txt'.format(logtime)])
             logtime = time.strftime("%Y-%m-%d-%H-%M-%S")
@@ -37,7 +36,7 @@ try:
             begin = time.time()
         log.write("_new loop_" + "\n")
         log.write("en state: " + str(en) + "\n")
-        subprocess.run(['sleep', str(time)])
+        subprocess.run(['sleep', str(_time)])
         _obj = {
             'hostname': hostname,
             'file': ""
@@ -64,7 +63,7 @@ try:
         if 'en' in flags:
             en = flags['en']
         if 'time' in flags:
-            time = flags['time']
+            _time = flags['time']
         if 'quality' in flags:
             thumb_perc = quality = flags['quality']
         log.write("Flags at EOF: \n")
